@@ -115,6 +115,13 @@ export default function SimpleBarChart() {
           </p>
         </div>
       </div>
+
+      {/* Disclaimer */}
+      <div className="mt-4 p-3 bg-yellow-50 dark:bg-yellow-900/20 rounded-lg border border-yellow-200 dark:border-yellow-700">
+        <p className="text-xs text-yellow-800 dark:text-yellow-200 text-center">
+          <span className="font-medium">Disclaimer:</span> This data is fictional and for demonstration purposes only.
+        </p>
+      </div>
     </Card>
   );
 }
