@@ -58,25 +58,25 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
           isNavVisible ? "translate-y-0" : "-translate-y-full"
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            {/* Logo and title */}
-            <div className="flex items-center space-x-3 animate-fade-in">
-              <div className="bg-gradient-to-r from-blue-600 to-purple-600 p-2 rounded-lg animate-glow">
-                <ChartBarIcon className="h-6 w-6 text-white" />
+        <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-8">
+          <div className="flex justify-between items-center h-14 sm:h-16">
+            {/* Logo, title, and signature */}
+            <div className="flex items-center space-x-2 sm:space-x-3 animate-fade-in min-w-0 flex-1">
+              <div className="bg-gradient-to-r from-blue-600 to-purple-600 p-1.5 sm:p-2 rounded-lg animate-glow flex-shrink-0">
+                <ChartBarIcon className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
               </div>
-              <div>
-                <h1 className="text-xl font-bold bg-gradient-to-r from-gray-900 via-blue-900 to-purple-900 dark:from-white dark:via-blue-100 dark:to-purple-100 bg-clip-text text-transparent">
+              <div className="min-w-0">
+                <h1 className="text-base sm:text-xl font-bold bg-gradient-to-r from-gray-900 via-blue-900 to-purple-900 dark:from-white dark:via-blue-100 dark:to-purple-100 bg-clip-text text-transparent truncate">
                   Analytics Dashboard
                 </h1>
-                <p className="text-xs text-gray-500 dark:text-gray-400">Professional Data Insights</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400 hidden sm:block">Professional Data Insights</p>
               </div>
-              {/* Signature with GitHub link */}
+              {/* Signature with GitHub link - hidden on mobile */}
               <a
                 href="https://github.com/goncaloestrelado"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="ml-6 flex items-center text-xs text-gray-400 hover:text-blue-600 dark:hover:text-blue-300 transition-colors"
+                className="hidden md:flex items-center text-xs text-gray-400 hover:text-blue-600 dark:hover:text-blue-300 transition-colors ml-2"
                 title="Visit my GitHub"
               >
                 by <span className="mx-1 font-semibold">goncaloestrelado</span>
@@ -93,17 +93,17 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
             {/* Theme toggle button */}
             <button
               onClick={toggleTheme}
-              className="relative p-2 rounded-xl bg-gray-100/80 dark:bg-gray-800/80 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50 text-gray-600 dark:text-gray-300 hover:bg-gray-200/80 dark:hover:bg-gray-700/80 transition-all duration-300 transform hover:scale-110 animate-scale-in"
+              className="relative p-1.5 sm:p-2 rounded-xl bg-gray-100/80 dark:bg-gray-800/80 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50 text-gray-600 dark:text-gray-300 hover:bg-gray-200/80 dark:hover:bg-gray-700/80 transition-all duration-300 transform hover:scale-110 animate-scale-in flex-shrink-0"
               aria-label="Toggle theme"
             >
-              <div className="relative w-5 h-5">
+              <div className="relative w-4 h-4 sm:w-5 sm:h-5">
                 <SunIcon
-                  className={`absolute inset-0 h-5 w-5 transition-all duration-300 ${
+                  className={`absolute inset-0 h-4 w-4 sm:h-5 sm:w-5 transition-all duration-300 ${
                     isDark ? "rotate-90 scale-0 opacity-0" : "rotate-0 scale-100 opacity-100"
                   }`}
                 />
                 <MoonIcon
-                  className={`absolute inset-0 h-5 w-5 transition-all duration-300 ${
+                  className={`absolute inset-0 h-4 w-4 sm:h-5 sm:w-5 transition-all duration-300 ${
                     isDark ? "rotate-0 scale-100 opacity-100" : "-rotate-90 scale-0 opacity-0"
                   }`}
                 />
@@ -114,7 +114,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
       </nav>
 
       {/* Main content */}
-      <main className="relative z-10 flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 pt-24 w-full">
+      <main className="relative z-10 flex-grow max-w-7xl mx-auto px-3 sm:px-4 lg:px-8 py-4 sm:py-6 lg:py-8 pt-16 sm:pt-20 lg:pt-24 w-full">
         {children}
       </main>
 

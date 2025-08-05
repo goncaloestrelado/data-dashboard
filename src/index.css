@@ -123,7 +123,56 @@
 /* Responsive breakpoints helpers */
 @media (max-width: 640px) {
   .mobile-padding {
-    @apply px-4;
+    @apply px-3;
+  }
+
+  /* Better mobile touch targets */
+  button,
+  select,
+  input {
+    min-height: 44px;
+  }
+
+  /* Prevent horizontal scrolling on mobile */
+  body {
+    overflow-x: hidden;
+  }
+
+  /* Better text size for mobile */
+  .text-responsive {
+    @apply text-sm;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Even smaller screens adjustments */
+  .container {
+    @apply px-2;
+  }
+
+  /* Reduce chart heights for very small screens */
+  .chart-mobile {
+    height: 200px !important;
+  }
+}
+
+/* Hide scrollbars but keep functionality */
+.scrollbar-hide {
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
+
+/* Touch-friendly hover states */
+@media (hover: none) and (pointer: coarse) {
+  .hover\:scale-105:hover {
+    transform: none;
+  }
+
+  .hover\:shadow-lg:hover {
+    box-shadow: none;
   }
 }
 

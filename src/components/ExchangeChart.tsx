@@ -79,8 +79,8 @@ export default function ExchangeChart() {
     if (active && payload && payload.length) {
       const data = payload[0].payload;
       return (
-        <div className="bg-white dark:bg-gray-800 p-3 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg">
-          <p className="text-sm text-gray-600 dark:text-gray-400">
+        <div className="bg-white dark:bg-gray-800 p-2 sm:p-3 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg max-w-xs">
+          <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
             {new Date(data.timestamp).toLocaleDateString("en-US", {
               year: "numeric",
               month: "short",
@@ -89,7 +89,7 @@ export default function ExchangeChart() {
               minute: "2-digit",
             })}
           </p>
-          <p className="text-lg font-semibold text-gray-900 dark:text-white">
+          <p className="text-sm sm:text-lg font-semibold text-gray-900 dark:text-white">
             $
             {payload[0].value.toLocaleString("en-US", {
               minimumFractionDigits: 2,
@@ -109,12 +109,14 @@ export default function ExchangeChart() {
       loading={loading}
       error={error}
     >
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
-        <div className="flex flex-wrap items-center gap-4">
+      <div className="flex flex-col gap-4 mb-4 sm:mb-6">
+        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
           <div className="flex items-center space-x-2">
-            <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Time Range:</label>
+            <label className="text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 whitespace-nowrap">
+              Time Range:
+            </label>
             <select
-              className="px-3 py-2 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+              className="px-2 py-1.5 sm:px-3 sm:py-2 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-xs sm:text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 flex-1 sm:flex-initial"
               value={range}
               onChange={(e) => setRange(e.target.value)}
             >
@@ -127,9 +129,11 @@ export default function ExchangeChart() {
             </select>
           </div>
           <div className="flex items-center space-x-2">
-            <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Cryptocurrency:</label>
+            <label className="text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 whitespace-nowrap">
+              Cryptocurrency:
+            </label>
             <select
-              className="px-3 py-2 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+              className="px-2 py-1.5 sm:px-3 sm:py-2 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-xs sm:text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 flex-1 sm:flex-initial"
               value={coin}
               onChange={(e) => setCoin(e.target.value)}
             >
@@ -141,19 +145,21 @@ export default function ExchangeChart() {
             </select>
           </div>
         </div>
-        <div
-          className={`px-3 py-1 rounded-full text-xs font-medium flex items-center space-x-1`}
-          style={{ backgroundColor: `${selectedCoin.color}20`, color: selectedCoin.color }}
-        >
-          <div className="w-2 h-2 rounded-full animate-pulse" style={{ backgroundColor: selectedCoin.color }}></div>
-          <span>Live Data</span>
+        <div className="flex justify-end">
+          <div
+            className={`px-2 py-1 sm:px-3 sm:py-1 rounded-full text-xs font-medium flex items-center space-x-1`}
+            style={{ backgroundColor: `${selectedCoin.color}20`, color: selectedCoin.color }}
+          >
+            <div className="w-2 h-2 rounded-full animate-pulse" style={{ backgroundColor: selectedCoin.color }}></div>
+            <span>Live Data</span>
+          </div>
         </div>
       </div>
 
       {!loading && !error && (
-        <div className="h-80">
+        <div className="h-64 sm:h-80">
           <ResponsiveContainer width="100%" height="100%">
-            <AreaChart data={data} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
+            <AreaChart data={data} margin={{ top: 5, right: 10, left: 10, bottom: 5 }}>
               <CartesianGrid strokeDasharray="3 3" stroke="#e0e7ff" className="dark:stroke-gray-700" />
               <XAxis
                 dataKey="timestamp"
@@ -169,13 +175,14 @@ export default function ExchangeChart() {
                 minTickGap={20}
                 axisLine={false}
                 tickLine={false}
-                tick={{ fontSize: 12, fill: "#6b7280" }}
+                tick={{ fontSize: 10, fill: "#6b7280" }}
               />
               <YAxis
                 axisLine={false}
                 tickLine={false}
-                tick={{ fontSize: 12, fill: "#6b7280" }}
+                tick={{ fontSize: 10, fill: "#6b7280" }}
                 tickFormatter={(value) => `$${value.toLocaleString()}`}
+                width={60}
               />
               <Tooltip content={<CustomTooltip />} />
               <Area

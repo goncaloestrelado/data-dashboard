@@ -50,10 +50,10 @@ const data = [
 const CustomTooltip = ({ active, payload, label }: any) => {
   if (active && payload && payload.length) {
     return (
-      <div className="bg-white dark:bg-gray-800 p-3 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg">
-        <p className="text-sm font-medium text-gray-900 dark:text-white mb-2">{label}</p>
+      <div className="bg-white dark:bg-gray-800 p-2 sm:p-3 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg max-w-xs">
+        <p className="text-xs sm:text-sm font-medium text-gray-900 dark:text-white mb-2">{label}</p>
         {payload.map((entry: any, index: number) => (
-          <p key={index} className="text-sm" style={{ color: entry.color }}>
+          <p key={index} className="text-xs sm:text-sm" style={{ color: entry.color }}>
             {entry.name}: ${entry.value.toLocaleString()}
           </p>
         ))}
@@ -66,27 +66,28 @@ const CustomTooltip = ({ active, payload, label }: any) => {
 export default function SimpleBarChart() {
   return (
     <Card title="Financial Performance" subtitle="Monthly revenue, profit, and expenses comparison">
-      <div className="h-80">
+      <div className="h-64 sm:h-80">
         <ResponsiveContainer width="100%" height="100%">
           <BarChart
             data={data}
             margin={{
-              top: 20,
-              right: 30,
-              left: 20,
+              top: 10,
+              right: 10,
+              left: 10,
               bottom: 5,
             }}
           >
             <CartesianGrid strokeDasharray="3 3" stroke="#e0e7ff" className="dark:stroke-gray-700" />
-            <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: "#6b7280" }} />
+            <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fontSize: 10, fill: "#6b7280" }} />
             <YAxis
               axisLine={false}
               tickLine={false}
-              tick={{ fontSize: 12, fill: "#6b7280" }}
+              tick={{ fontSize: 10, fill: "#6b7280" }}
               tickFormatter={(value) => `$${value.toLocaleString()}`}
+              width={60}
             />
             <Tooltip content={<CustomTooltip />} />
-            <Legend wrapperStyle={{ fontSize: "14px" }} iconType="rect" />
+            <Legend wrapperStyle={{ fontSize: "12px" }} iconType="rect" />
             <Bar dataKey="revenue" fill="#3b82f6" name="Revenue" radius={[2, 2, 0, 0]} animationDuration={1000} />
             <Bar dataKey="profit" fill="#10b981" name="Profit" radius={[2, 2, 0, 0]} animationDuration={1200} />
             <Bar dataKey="expenses" fill="#ef4444" name="Expenses" radius={[2, 2, 0, 0]} animationDuration={1400} />
@@ -95,29 +96,29 @@ export default function SimpleBarChart() {
       </div>
 
       {/* Summary stats */}
-      <div className="mt-6 grid grid-cols-3 gap-4">
-        <div className="text-center p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
-          <p className="text-sm text-blue-600 dark:text-blue-400 font-medium">Total Revenue</p>
-          <p className="text-lg font-bold text-blue-900 dark:text-blue-100">
+      <div className="mt-4 sm:mt-6 grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
+        <div className="text-center p-2 sm:p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+          <p className="text-xs sm:text-sm text-blue-600 dark:text-blue-400 font-medium">Total Revenue</p>
+          <p className="text-sm sm:text-lg font-bold text-blue-900 dark:text-blue-100">
             ${data.reduce((sum, item) => sum + item.revenue, 0).toLocaleString()}
           </p>
         </div>
-        <div className="text-center p-3 bg-green-50 dark:bg-green-900/20 rounded-lg">
-          <p className="text-sm text-green-600 dark:text-green-400 font-medium">Total Profit</p>
-          <p className="text-lg font-bold text-green-900 dark:text-green-100">
+        <div className="text-center p-2 sm:p-3 bg-green-50 dark:bg-green-900/20 rounded-lg">
+          <p className="text-xs sm:text-sm text-green-600 dark:text-green-400 font-medium">Total Profit</p>
+          <p className="text-sm sm:text-lg font-bold text-green-900 dark:text-green-100">
             ${data.reduce((sum, item) => sum + item.profit, 0).toLocaleString()}
           </p>
         </div>
-        <div className="text-center p-3 bg-red-50 dark:bg-red-900/20 rounded-lg">
-          <p className="text-sm text-red-600 dark:text-red-400 font-medium">Net Expenses</p>
-          <p className="text-lg font-bold text-red-900 dark:text-red-100">
+        <div className="text-center p-2 sm:p-3 bg-red-50 dark:bg-red-900/20 rounded-lg sm:col-span-1 col-span-1">
+          <p className="text-xs sm:text-sm text-red-600 dark:text-red-400 font-medium">Net Expenses</p>
+          <p className="text-sm sm:text-lg font-bold text-red-900 dark:text-red-100">
             ${Math.abs(data.reduce((sum, item) => sum + item.expenses, 0)).toLocaleString()}
           </p>
         </div>
       </div>
 
       {/* Disclaimer */}
-      <div className="mt-4 p-3 bg-yellow-50 dark:bg-yellow-900/20 rounded-lg border border-yellow-200 dark:border-yellow-700">
+      <div className="mt-3 sm:mt-4 p-2 sm:p-3 bg-yellow-50 dark:bg-yellow-900/20 rounded-lg border border-yellow-200 dark:border-yellow-700">
         <p className="text-xs text-yellow-800 dark:text-yellow-200 text-center">
           <span className="font-medium">Disclaimer:</span> This data is fictional and for demonstration purposes only.
         </p>

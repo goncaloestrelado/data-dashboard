@@ -31,16 +31,20 @@ export default function App() {
         return <Overview onCoinSelect={handleCoinSelect} />;
       case "line":
         return (
-          <div className="space-y-6">
-            <div className="flex items-center justify-between">
+          <div className="space-y-4 sm:space-y-6">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
               <div>
-                <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Price Analysis</h2>
-                <p className="text-gray-600 dark:text-gray-400">Historical cryptocurrency price trends</p>
+                <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">Price Analysis</h2>
+                <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400">
+                  Historical cryptocurrency price trends
+                </p>
               </div>
               <div className="flex items-center space-x-2">
-                <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Time Range:</label>
+                <label className="text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 whitespace-nowrap">
+                  Time Range:
+                </label>
                 <select
-                  className="px-3 py-2 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                  className="px-2 py-1.5 sm:px-3 sm:py-2 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-xs sm:text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 flex-1 sm:flex-initial"
                   value={range}
                   onChange={(e) => setRange(e.target.value)}
                 >
@@ -58,30 +62,36 @@ export default function App() {
         );
       case "exchange":
         return (
-          <div className="space-y-6">
+          <div className="space-y-4 sm:space-y-6">
             <div>
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Exchange Data</h2>
-              <p className="text-gray-600 dark:text-gray-400">Real-time cryptocurrency exchange information</p>
+              <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">Exchange Data</h2>
+              <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400">
+                Real-time cryptocurrency exchange information
+              </p>
             </div>
             <ExchangeChart />
           </div>
         );
       case "bar":
         return (
-          <div className="space-y-6">
+          <div className="space-y-4 sm:space-y-6">
             <div>
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Performance Metrics</h2>
-              <p className="text-gray-600 dark:text-gray-400">Financial performance analysis and comparison</p>
+              <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">Performance Metrics</h2>
+              <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400">
+                Financial performance analysis and comparison
+              </p>
             </div>
             <SimpleBarChart />
           </div>
         );
       case "pie":
         return (
-          <div className="space-y-6">
+          <div className="space-y-4 sm:space-y-6">
             <div>
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Portfolio Analysis</h2>
-              <p className="text-gray-600 dark:text-gray-400">Asset allocation and distribution insights</p>
+              <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">Portfolio Analysis</h2>
+              <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400">
+                Asset allocation and distribution insights
+              </p>
             </div>
             <SimplePieChart />
           </div>
@@ -94,7 +104,7 @@ export default function App() {
   return (
     <ThemeProvider>
       <Layout>
-        <div className="space-y-8">
+        <div className="space-y-6 sm:space-y-8">
           <Tabs activeTab={activeTab} onTabChange={handleTabChange} />
 
           <div className="animate-fade-in">{renderTabContent()}</div>
